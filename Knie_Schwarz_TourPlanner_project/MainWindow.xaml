@@ -8,7 +8,9 @@
         Title="Hello World Application" Height="200" Width="320"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <DockPanel>
-        <Grid DockPanel.Dock="Bottom">
+
+        <!-- Bottom Grid -->
+        <Grid x:Name="Bottom" DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="5" />
@@ -19,38 +21,107 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" DockPanel.Dock="Left" Content="Enter your name:" />
-            <TextBox Grid.Row="0" Grid.Column="2" DockPanel.Dock="Right" Text="{Binding Path=GreetingName}" TextWrapping="Wrap" />
+            <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path=GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" />
             <Button Grid.Row="1" Grid.Column="0" DockPanel.Dock="Left" Content="Greet Me" Width="80" Click="ButtonGreetMe_Click"/>
-            <Button Grid.Row="1" Grid.Column="2" DockPanel.Dock="Right" Content="Exit" Width="80" Click="ButtonExit_Click"/>
+            <Button Grid.Row="1" Grid.Column="2" DockPanel.Dock="Right" Content="Exit" Width="80" Click="ButtonExit_Click" HorizontalAlignment="Right"/>
+            <!-- GridSplitter Vertical -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+
         </Grid>
-       
-        
-        <Grid DockPanel.Dock="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="15" />
-                    <ColumnDefinition Width="Auto" MinWidth="55" />
-                </Grid.ColumnDefinitions>
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
 
-                <Menu DockPanel.Dock="Top" Grid.Column="0">
-                    <MenuItem Header="_File">
-                        <MenuItem Header="E_xit" Click="ButtonExit_Click"/>
-                    </MenuItem>
-                    <MenuItem Header="_Edit"/>
-                    <MenuItem Header="_Help"/>
-                </Menu>
+        <!-- Top Grid -->
+        <Grid x:Name="Top" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="Auto" MinWidth="55" />
+            </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="2" Content="Login" Click="ButtonLogin_Click"/>
-            </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <Viewbox>
-            <Label DockPanel.Dock="Top" Content="{Binding GreetingText}" FontSize="48" FontWeight="Bold" />
-        </Viewbox>
-        
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="E_xit" Click="ButtonExit_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Edit"/>
+                <MenuItem Header="_Help"/>
+            </Menu>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <Button Grid.Column="2" Content="Login" Click="ButtonLogin_Click"/>
+        </Grid>
+
+        <!-- Search Field -->
+        <TextBox DockPanel.Dock="Top" Text="Search..." HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0"/>
+
+        <!-- MiddleArea Grid -->
+        <Grid x:Name="MiddleArea">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="2*" MinWidth="55" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+
+            <!-- GridSplitter Vertical -->
+            <GridSplitter Grid.Column="1" Grid.RowSpan="4" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Background="Blue" Grid.Row="1" Grid.ColumnSpan="1" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Background="Blue" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+
+            <Label Grid.Row="0" Grid.Column="0" Background="Blue" Foreground="White" Content="Tours" HorizontalAlignment="Left"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="+" Padding="2" HorizontalAlignment="Right"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="-" Padding="2" HorizontalAlignment="Right"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="..." Padding="2" HorizontalAlignment="Right"/>
+            </StackPanel>
+
+            <Viewbox Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Margin="5">
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <Button  Background="White" Content="Wienerwald"/>
+                    <Button  Background="White" Content="Dopplerhütte"/>
+                    <Button  Background="White" Content="Figlwarte"/>
+                    <Button  Background="White" Content="Dorfrunde"/>
+
+                </StackPanel>
+            </Viewbox>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Button Grid.Row="0" Grid.Column="0" Content="General" Padding="2" HorizontalAlignment="Right"/>
+                <Button Grid.Row="0" Grid.Column="0" Content="Route" Padding="2" HorizontalAlignment="Right"/>
+                <Button Grid.Row="0" Grid.Column="0" Content="Misc" Padding="2" HorizontalAlignment="Right"/>
+            </StackPanel>
+
+
+            <Label Grid.Row="2" Grid.Column="2" Background="Blue" Foreground="White" Content="Tour Logs" HorizontalAlignment="Left"/>
+            <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="+" Padding="2" HorizontalAlignment="Right"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="-" Padding="2" HorizontalAlignment="Right"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="..." Padding="2" HorizontalAlignment="Right"/>
+            </StackPanel>
+
+
+            <!-- Text Display -->
+            <Viewbox Grid.Row="1" Grid.Column="2">
+                <Label DockPanel.Dock="Left" Content="{Binding GreetingText}" FontSize="48" FontWeight="Bold" />
+            </Viewbox>
+        </Grid>
     </DockPanel>
 </Window>
