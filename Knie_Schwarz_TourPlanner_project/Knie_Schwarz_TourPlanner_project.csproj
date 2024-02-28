@@ -9,8 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\map.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Assets\Icons\" />
-    <Folder Include="Assets\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\map.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

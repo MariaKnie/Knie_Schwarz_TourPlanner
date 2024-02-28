@@ -9,6 +9,14 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <DockPanel>
 
+        
+        
+        <Popup x:Name="myPopup" Placement="Center" IsOpen="False">
+            <Border Background="LightGray" BorderBrush="Black" BorderThickness="1" Width="200" Height="100">
+                <TextBlock  Text="{Binding Path=GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Popup>
+        
         <!-- Bottom Grid -->
         <Grid x:Name="Bottom" DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
@@ -147,15 +155,17 @@
                     </Grid>
 
                     <Grid Grid.Row="2" Margin="10">
-                        <ListBox Name="listBox" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <ListBox Padding="2" BorderBrush="Black" BorderThickness="1" Name="listBox" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <UniformGrid Columns="3"/>
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
-                            <ListBoxItem>Row 1, Column 1</ListBoxItem>
-                            <ListBoxItem>Row 1, Column 2</ListBoxItem>
-                            <ListBoxItem>Row 1, Column 3</ListBoxItem>
+                            
+                            <ListBoxItem Background="AliceBlue">Date</ListBoxItem>
+                            <ListBoxItem Background="AliceBlue">Time</ListBoxItem>
+                            <ListBoxItem Background="AliceBlue">Duration</ListBoxItem>
+                            
                             <ListBoxItem>Row 2, Column 1</ListBoxItem>
                             <ListBoxItem>Row 2, Column 2</ListBoxItem>
                             <ListBoxItem>Row 2, Column 3</ListBoxItem>
