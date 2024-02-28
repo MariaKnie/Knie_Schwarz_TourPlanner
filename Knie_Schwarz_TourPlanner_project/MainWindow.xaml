@@ -7,9 +7,16 @@
         mc:Ignorable="d"
         Title="Hello World Application" Height="400" Width="640"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="map" UriSource="\Assets\Images\map.jpg"></BitmapImage>       
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <DockPanel>
 
-        
+       
         
         <Popup x:Name="myPopup" Placement="Center" IsOpen="False">
             <Border Background="LightGray" BorderBrush="Black" BorderThickness="1" Width="200" Height="100">
@@ -123,6 +130,7 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
+                        <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
                     <Viewbox>
                          <!-- Text Display -->
                         <Label DockPanel.Dock="Left" Content="{Binding GreetingText}" FontSize="15" FontWeight="Bold" />
