@@ -17,53 +17,16 @@ namespace Knie_Schwarz_TourPlanner_project
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private string greetingText = "Hello";
-        public string GreetingName { get; set; } = "World";
-
+        
         private DispatcherTimer timer;
-        public string GreetingText
-        {
-            get => greetingText;
-            set
-            {
-                greetingText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GreetingText)));
-            }
-        }
+        
         public MainWindow()
         {
             InitializeComponent();
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;  // during initialization the engine registers itself to listen to PropertyChanged events
-
-        private void ButtonExit_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("ButtonExit_Click");
-            System.Environment.Exit(0);
-            //Application.Current.Shutdown();
-        }
-
-        private void ButtonGreetMe_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine($"Button_Click GreetingName is {GreetingName}");
-            GreetingText = $"Hello {GreetingName}!";
-            Debug.WriteLine($"Button_Click GreetingText is {GreetingText}");
-
-            ShowPopup_Click(sender, e);
-        }
-
-        private void ButtonLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine($"Button_Click GreetingName is {GreetingName}");
-            GreetingText = $"You have logged in, {GreetingName}!";
-            Debug.WriteLine($"Button_Click GreetingText is {GreetingText}");
-
-            ShowPopup_Click(sender, e);
         }
 
         private void ShowPopup_Click(object sender, RoutedEventArgs e)

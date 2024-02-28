@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project"
         mc:Ignorable="d"
-        Title="Hello World Application" Height="400" Width="640"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    
+        Title="Hello World Application" Height="400" Width="640">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+
+
     <Window.Resources>
         <ResourceDictionary>
             <BitmapImage x:Key="map" UriSource="\Assets\Images\map.jpg"></BitmapImage>       
@@ -20,7 +23,7 @@
         
         <Popup x:Name="myPopup" Placement="Center" IsOpen="False">
             <Border Background="LightGray" BorderBrush="Black" BorderThickness="1" Width="200" Height="100">
-                <TextBlock  Text="{Binding Path=GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock  Text="{Binding Path=Greet.GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Popup>
         
@@ -37,9 +40,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Enter your name:" Margin="0,0,0,24" Grid.RowSpan="2" />
-            <TextBox Grid.Column="2" Text="{Binding Path=GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
-            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Click="ButtonGreetMe_Click"/>
-            <Button  Grid.Row="1" Grid.Column="3" Content="Exit" Width="80" Click="ButtonExit_Click" HorizontalAlignment="Left"/>
+            <TextBox Grid.Column="2" Text="{Binding Path=Greet.GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Command="{Binding Path=Greet.GreetCommand}"/>
+            <Button  Grid.Row="1" Grid.Column="3" Content="Exit" Width="80" Command="{Binding Path=Exit}" HorizontalAlignment="Left"/>
             <!-- GridSplitter Vertical -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5" HorizontalAlignment="Center" />
             <!-- GridSplitter Horizontal -->
@@ -61,13 +64,13 @@
 
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="E_xit" Click="ButtonExit_Click"/>
+                    <MenuItem Header="E_xit" Command="{Binding Path=Exit}"/>
                 </MenuItem>
                 <MenuItem Header="_Edit"/>
                 <MenuItem Header="_Help"/>
             </Menu>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <Button Grid.Column="2" Content="Login" Click="ButtonLogin_Click"/>
+            <Button Grid.Column="2" Content="Login" Command="{Binding Path=Login.LoginCommand}"/>
         </Grid>
 
         <!-- Search Field -->
@@ -133,7 +136,7 @@
                         <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
                     <Viewbox>
                          <!-- Text Display -->
-                        <Label DockPanel.Dock="Left" Content="{Binding GreetingText}" FontSize="15" FontWeight="Bold" />
+                        <Label DockPanel.Dock="Left" Content="{Binding Greet.GreetingText}" FontSize="15" FontWeight="Bold" />
                     </Viewbox>
                 </Grid>
 
