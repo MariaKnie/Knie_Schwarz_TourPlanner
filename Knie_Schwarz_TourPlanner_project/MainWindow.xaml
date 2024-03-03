@@ -13,20 +13,20 @@
 
     <Window.Resources>
         <ResourceDictionary>
-            <BitmapImage x:Key="map" UriSource="\Assets\Images\map.jpg"></BitmapImage>       
+            <BitmapImage x:Key="map" UriSource="\Assets\Images\map.jpg"></BitmapImage>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <DockPanel>
 
-       
-        
+
+
         <Popup x:Name="myPopup" Placement="Center" IsOpen="False">
             <Border Background="LightGray" BorderBrush="Black" BorderThickness="1" Width="200" Height="100">
-                <TextBlock  Text="{Binding Path=Greet.GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock  Text="{Binding Path=Login.GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Popup>
-        
+
         <!-- Bottom Grid -->
         <Grid x:Name="Bottom" DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
@@ -40,8 +40,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Enter your name:" Margin="0,0,0,24" Grid.RowSpan="2" />
-            <TextBox Grid.Column="2" Text="{Binding Path=Greet.GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
-            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Command="{Binding Path=Greet.GreetCommand}"/>
+            <TextBox Grid.Column="2" Text="{Binding Path=Login.GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Command="{Binding Path=Login.GreetCommand}"/>
             <Button  Grid.Row="1" Grid.Column="3" Content="Exit" Width="80" Command="{Binding Path=Exit}" HorizontalAlignment="Left"/>
             <!-- GridSplitter Vertical -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5" HorizontalAlignment="Center" />
@@ -79,9 +79,11 @@
         <!-- MiddleArea Grid -->
         <Grid x:Name="MiddleArea">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*" MinWidth="75"/>
+                <ColumnDefinition Width="268*" MinWidth="75"/>
                 <ColumnDefinition Width="15" />
-                <ColumnDefinition Width="2*" MinWidth="115" />
+                <ColumnDefinition Width="322*" MinWidth="115" />
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="19*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -91,21 +93,21 @@
             </Grid.RowDefinitions>
 
             <!-- GridSplitter Vertical -->
-            <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            
-            <Grid Grid.Row="1">
+            <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="5" HorizontalAlignment="Center" />
+
+            <Grid Grid.Row="1" Margin="0,0,0,265" Grid.RowSpan="2">
                 <!-- GridSplitter Horizontal -->
                 <Rectangle Fill="Blue"/>
             </Grid>
 
-            <Label Background="Blue" Foreground="White" Content="Tours" HorizontalAlignment="Left"/>
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Label Background="Blue" Foreground="White" Content="Tours" HorizontalAlignment="Left" Margin="0,0,0,5" Grid.RowSpan="2"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="229,0,0,5" Grid.RowSpan="2">
                 <Button  Background="Blue" Foreground="White" Content="+" Padding="2" HorizontalAlignment="Right"/>
                 <Button  Background="Blue" Foreground="White" Content="-" Padding="2" HorizontalAlignment="Right"/>
                 <Button  Background="Blue" Foreground="White" Content="..." Padding="2" HorizontalAlignment="Right"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
+            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,0,0,5" Grid.RowSpan="2">
                 <Button Grid.Row="0" Grid.Column="0" Content="General" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Route" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Misc" Padding="2" HorizontalAlignment="Right"/>
@@ -125,7 +127,7 @@
                 </Viewbox>
             </Grid>
 
-            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
+            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5"/>
@@ -133,10 +135,10 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                        <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
+                    <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
                     <Viewbox>
-                         <!-- Text Display -->
-                        <Label DockPanel.Dock="Left" Content="{Binding Greet.GreetingText}" FontSize="15" FontWeight="Bold" />
+                        <!-- Text Display -->
+                        <Label DockPanel.Dock="Left" Content="{Binding Login.GreetingText}" FontSize="15" FontWeight="Bold" />
                     </Viewbox>
                 </Grid>
 
@@ -172,11 +174,11 @@
                                     <UniformGrid Columns="3"/>
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
-                            
+
                             <ListBoxItem Background="AliceBlue">Date</ListBoxItem>
                             <ListBoxItem Background="AliceBlue">Time</ListBoxItem>
                             <ListBoxItem Background="AliceBlue">Duration</ListBoxItem>
-                            
+
                             <ListBoxItem>Row 2, Column 1</ListBoxItem>
                             <ListBoxItem>Row 2, Column 2</ListBoxItem>
                             <ListBoxItem>Row 2, Column 3</ListBoxItem>
@@ -191,7 +193,7 @@
                             <ListBoxItem>Row 5, Column 3</ListBoxItem>
                         </ListBox>
                     </Grid>
-                    
+
                 </Grid>
             </Grid>
         </Grid>
