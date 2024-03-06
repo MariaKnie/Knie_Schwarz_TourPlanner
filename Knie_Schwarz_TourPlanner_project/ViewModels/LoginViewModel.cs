@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
-    public class LoginViewModel : ViewModelBase, INotifyPropertyChanged
+    public class LoginViewModel : ViewModelBase
     {
         public ICommand LoginCommand { get; }
         public ICommand GreetCommand { get; }
@@ -25,10 +25,9 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
             set
             {
                 greetingText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GreetingText)));
+                OnPropertyChanged(nameof(GreetingText));
             }
         }
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         public LoginViewModel()
         {

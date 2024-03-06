@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
-    public abstract class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
-        
+        public event PropertyChangedEventHandler? PropertyChanged;
 
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

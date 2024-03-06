@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Knie_Schwarz_TourPlanner_project.Commands
+namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
     public class ExitCommand : ICommand
     {
@@ -20,7 +20,7 @@ namespace Knie_Schwarz_TourPlanner_project.Commands
         public void Execute(object? parameter)
         {
             Debug.WriteLine("ButtonExit_Click");
-            System.Environment.Exit(0);
+            Environment.Exit(0);
             //Application.Current.Shutdown();
         }
     }

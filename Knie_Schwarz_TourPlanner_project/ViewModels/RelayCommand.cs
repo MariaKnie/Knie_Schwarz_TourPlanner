@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Knie_Schwarz_TourPlanner_project
+namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         readonly Action<object?> _execute;
         readonly Predicate<object?>? _canExecute;
@@ -33,6 +33,12 @@ namespace Knie_Schwarz_TourPlanner_project
         public void Execute(object? parameter)
         {
             _execute(parameter);
+        }
+
+        internal void RaiseCanExecuteChanged()
+        {
+            if (_canExecute != null)
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

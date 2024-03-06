@@ -12,7 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace Knie_Schwarz_TourPlanner_project
+namespace Knie_Schwarz_TourPlanner_project.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -31,14 +31,14 @@ namespace Knie_Schwarz_TourPlanner_project
 
         private void ShowPopup_Click(object sender, RoutedEventArgs e)
         {
-            myPopup.IsOpen = true;
+            //myPopup.IsOpen = true;
             timer.Interval = TimeSpan.FromSeconds(3); // Adjust duration here
             timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            myPopup.IsOpen = false;
+            //myPopup.IsOpen = false;
             timer.Stop();
         }
     }

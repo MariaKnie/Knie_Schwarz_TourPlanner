@@ -1,15 +1,12 @@
-﻿<Window x:Class="Knie_Schwarz_TourPlanner_project.MainWindow"
+﻿<Window x:Class="Knie_Schwarz_TourPlanner_project.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project"
+        xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.ViewModels"
+        xmlns:views="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
         mc:Ignorable="d"
         Title="Hello World Application" Height="400" Width="640">
-    <Window.DataContext>
-        <local:MainViewModel/>
-    </Window.DataContext>
-
 
     <Window.Resources>
         <ResourceDictionary>
@@ -23,7 +20,7 @@
 
         <Popup x:Name="myPopup" Placement="Center" IsOpen="False">
             <Border Background="LightGray" BorderBrush="Black" BorderThickness="1" Width="200" Height="100">
-                <TextBlock  Text="{Binding Path=Login.GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock  Text="{Binding Path=loginVM.GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Popup>
 
@@ -40,8 +37,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Enter your name:" Margin="0,0,0,24" Grid.RowSpan="2" />
-            <TextBox Grid.Column="2" Text="{Binding Path=Login.GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
-            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Command="{Binding Path=Login.GreetCommand}"/>
+            <TextBox Grid.Column="2" Text="{Binding Path=loginVM.GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Command="{Binding Path=loginVM.GreetCommand}"/>
             <Button  Grid.Row="1" Grid.Column="3" Content="Exit" Width="80" Command="{Binding Path=Exit}" HorizontalAlignment="Left"/>
             <!-- GridSplitter Vertical -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5" HorizontalAlignment="Center" />
@@ -70,7 +67,7 @@
                 <MenuItem Header="_Help"/>
             </Menu>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <Button Grid.Column="2" Content="Login" Command="{Binding Path=Login.LoginCommand}"/>
+            <Button Grid.Column="2" Content="Login"  Command="{Binding Path=loginVM.LoginCommand}"/>
         </Grid>
 
         <!-- Search Field -->
@@ -79,11 +76,9 @@
         <!-- MiddleArea Grid -->
         <Grid x:Name="MiddleArea">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="268*" MinWidth="75"/>
+                <ColumnDefinition Width="1.5*" MinWidth="75"/>
                 <ColumnDefinition Width="15" />
-                <ColumnDefinition Width="322*" MinWidth="115" />
-                <ColumnDefinition Width="16*"/>
-                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="2*" MinWidth="115" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -93,21 +88,21 @@
             </Grid.RowDefinitions>
 
             <!-- GridSplitter Vertical -->
-            <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="5" HorizontalAlignment="Center" />
+            <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
-            <Grid Grid.Row="1" Margin="0,0,0,265" Grid.RowSpan="2">
+            <Grid Grid.Row="1">
                 <!-- GridSplitter Horizontal -->
                 <Rectangle Fill="Blue"/>
             </Grid>
 
-            <Label Background="Blue" Foreground="White" Content="Tours" HorizontalAlignment="Left" Margin="0,0,0,5" Grid.RowSpan="2"/>
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="229,0,0,5" Grid.RowSpan="2">
+            <Label Background="Blue" Foreground="White" Content="Tours" HorizontalAlignment="Left"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button  Background="Blue" Foreground="White" Content="+" Padding="2" HorizontalAlignment="Right"/>
                 <Button  Background="Blue" Foreground="White" Content="-" Padding="2" HorizontalAlignment="Right"/>
                 <Button  Background="Blue" Foreground="White" Content="..." Padding="2" HorizontalAlignment="Right"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,0,0,5" Grid.RowSpan="2">
+            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Grid.Row="0" Grid.Column="0" Content="General" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Route" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Misc" Padding="2" HorizontalAlignment="Right"/>
@@ -127,7 +122,7 @@
                 </Viewbox>
             </Grid>
 
-            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3">
+            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5"/>
@@ -138,7 +133,7 @@
                     <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
                     <Viewbox>
                         <!-- Text Display -->
-                        <Label DockPanel.Dock="Left" Content="{Binding Login.GreetingText}" FontSize="15" FontWeight="Bold" />
+                        <Label DockPanel.Dock="Left" Content="{Binding loginVM.GreetingText}" FontSize="15" FontWeight="Bold" />
                     </Viewbox>
                 </Grid>
 
