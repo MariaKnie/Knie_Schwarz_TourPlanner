@@ -12,7 +12,7 @@ namespace Knie_Schwarz_TourPlanner_project
 {
     public class MainViewModel : ViewModelBase
     {
-        public LoginViewModel Login { get; } = new LoginViewModel();
+        public LoginViewModel Login { get; } = new LoginViewModel(); 
 
         public ExitCommand Exit { get; } = new ExitCommand();
     }
