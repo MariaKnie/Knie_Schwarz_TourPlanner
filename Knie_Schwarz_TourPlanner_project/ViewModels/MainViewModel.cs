@@ -14,21 +14,14 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
     {
         public LoginViewModel loginVM { get; } = new LoginViewModel();
         public SearchBarViewModel searchBarVM { get; } = new SearchBarViewModel();
+        public RouteManagementViewModel routeManagementVM { get; } = new RouteManagementViewModel();
         public ExitCommand Exit { get; } = new ExitCommand();
 
-        public MainViewModel(SearchBarViewModel searchBarVM, LoginViewModel loginVM)
+        public MainViewModel(SearchBarViewModel searchBarVM, LoginViewModel loginVM, RouteManagementViewModel routeManagementVM)
         {
             this.searchBarVM = searchBarVM;
             this.loginVM = loginVM;
+            this.routeManagementVM = routeManagementVM;
         }
-
-
-
-
-        /*
-        public LoginViewModel Login { get; } = new LoginViewModel();
-        public SearchBarViewModel SearchBar { get; } = new SearchBarViewModel();
-
-        public ExitCommand Exit { get; } = new ExitCommand(); */
     }
 }

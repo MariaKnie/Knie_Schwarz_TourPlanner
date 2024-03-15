@@ -14,13 +14,14 @@ namespace Knie_Schwarz_TourPlanner_project
         {
             var searchBarVM = new ViewModels.SearchBarViewModel();
             var loginVM = new ViewModels.LoginViewModel();
+            var routeManagementVM = new ViewModels.RouteManagementViewModel();
 
-            var wnd = new Views.MainWindow()
+            var mainWnd = new Views.MainWindow()
             {
-                DataContext = new ViewModels.MainViewModel(searchBarVM, loginVM),
+                DataContext = new ViewModels.MainViewModel(searchBarVM, loginVM, routeManagementVM),
                 //SearchBar = { DataContext = searchBarVM } //template for other windows?
             };
-            wnd.Show();
+            mainWnd.Show();
         }
     }
 
