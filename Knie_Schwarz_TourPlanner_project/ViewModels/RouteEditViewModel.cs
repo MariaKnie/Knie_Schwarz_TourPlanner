@@ -18,6 +18,19 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
     public class RouteEditViewModel : ViewModelBase
     {
+
+
+        //-----------------------------------
+
+        //NOT USED rn
+
+        //---------------------------------
+
+
+
+
+
+
         public string _routeName { get; set; } = "";
         public string _routeDiscription { get; set; } = "";
         public string _routeStart { get; set; } = "";
