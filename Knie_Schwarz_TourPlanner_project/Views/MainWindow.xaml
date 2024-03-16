@@ -3,16 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.ViewModels"
+        xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
         xmlns:views="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
         mc:Ignorable="d"
         Title="Hello World Application" Height="400" Width="640">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <BitmapImage x:Key="map" UriSource="\Assets\Images\map.jpg"></BitmapImage>
-        </ResourceDictionary>
-    </Window.Resources>
+   
 
     <DockPanel>
 
@@ -26,54 +22,21 @@
 
         <!-- Bottom Grid -->
         <Grid x:Name="Bottom" DockPanel.Dock="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="105*"/>
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="67*"/>
-                <ColumnDefinition Width="143*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Enter your name:" Margin="0,0,0,24" Grid.RowSpan="2" />
-            <TextBox Grid.Column="2" Text="GreetingName" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
-            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80"/>
-            <Button  Grid.Row="1" Grid.Column="3" Content="Exit" Width="80" Command="{Binding Path=Exit}" HorizontalAlignment="Left"/>
-            <!-- GridSplitter Vertical -->
-            <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5" HorizontalAlignment="Center" />
-            <!-- GridSplitter Horizontal -->
-            <GridSplitter Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <!--<local:Bottom/>-->
 
         </Grid>
 
         <!-- Top Grid -->
         <Grid x:Name="Top" DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="15" />
-                <ColumnDefinition Width="Auto" MinWidth="55" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="E_xit" Command="{Binding Path=Exit}"/>
-                </MenuItem>
-                <MenuItem Header="_Edit"/>
-                <MenuItem Header="_Help"/>
-            </Menu>
-            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <Button Grid.Column="2" Content="Login" />
+            <local:Menu/>
         </Grid>
 
         <!-- Search Field -->
-        <TextBox DockPanel.Dock="Top" Text="Search..." HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0"/>
+        <!--<TextBox DockPanel.Dock="Top" Text="Search..." HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0"/>-->
+        <local:Search DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0"/>
 
-        <!-- MiddleArea Grid -->
+
+            <!-- MiddleArea Grid -->
         <Grid x:Name="MiddleArea">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*" MinWidth="75"/>
@@ -112,30 +75,18 @@
 
 
             <Grid x:Name="LeftSide" Grid.Column="0" Grid.Row="2">
-                <Viewbox Margin="5">
-                    <ListView x:Name="RouteList" ItemsSource="{Binding Path=routeManagementVM.RouteList, AsyncState=true}" SelectedItem="{Binding Path=routeManagementVM.ActiveRoute}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Routes" Width="200" DisplayMemberBinding="{Binding Path=RouteName}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Viewbox>
+                <local:TourList/>
             </Grid>
 
-            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
+        <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
-                    <Viewbox>
-                        <!-- Text Display -->
-                        <Label DockPanel.Dock="Left" Content="GreetingText" FontSize="15" FontWeight="Bold" />
-                    </Viewbox>
+                <Grid x:Name="Map" Grid.Row="0">
+                    <local:Map/>
                 </Grid>
 
                 <!-- GridSplitter Horizontal -->
@@ -143,54 +94,11 @@
 
                 <!-- Under Picture-->
                 <Grid x:Name="UnderPicture" Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="3*"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="1">
-                        <!-- GridSplitter Horizontal -->
-                        <Rectangle Fill="Blue"/>
-                    </Grid>
-
-                    <Grid Grid.Row="0">
-                        <Label Grid.Row="0" Background="Blue" Foreground="White" Content="Tour Logs" HorizontalAlignment="Left"/>
-                        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
-                            <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="+" Padding="2" HorizontalAlignment="Right"/>
-                            <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="-" Padding="2" HorizontalAlignment="Right"/>
-                            <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="..." Padding="2" HorizontalAlignment="Right"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Grid.Row="2" Margin="10">
-                        <ListBox Padding="2" BorderBrush="Black" BorderThickness="1" Name="listBox" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="3"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-
-                            <ListBoxItem Background="AliceBlue">Date</ListBoxItem>
-                            <ListBoxItem Background="AliceBlue">Time</ListBoxItem>
-                            <ListBoxItem Background="AliceBlue">Duration</ListBoxItem>
-
-                            <ListBoxItem  x:Name="d"  Content="{Binding Path=routeManagementVM.ActiveRoute.RouteName}"></ListBoxItem>
-                            <ListBoxItem>Row 2, Column 2</ListBoxItem>
-                            <ListBoxItem>Row 2, Column 3</ListBoxItem>
-                            <ListBoxItem>Row 3, Column 1</ListBoxItem>
-                            <ListBoxItem>Row 3, Column 2</ListBoxItem>
-                            <ListBoxItem>Row 3, Column 3</ListBoxItem>
-                            <ListBoxItem>Row 4, Column 1</ListBoxItem>
-                            <ListBoxItem>Row 4, Column 2</ListBoxItem>
-                            <ListBoxItem>Row 4, Column 3</ListBoxItem>
-                            <ListBoxItem>Row 5, Column 1</ListBoxItem>
-                            <ListBoxItem>Row 5, Column 2</ListBoxItem>
-                            <ListBoxItem>Row 5, Column 3</ListBoxItem>
-                        </ListBox>
-                    </Grid>
+                    <local:Tourlogs/>
 
                 </Grid>
+
+               
             </Grid>
         </Grid>
     </DockPanel>

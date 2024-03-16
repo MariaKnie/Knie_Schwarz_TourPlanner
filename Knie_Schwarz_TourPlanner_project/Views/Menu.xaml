@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Knie_Schwarz_TourPlanner_project.Views.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300">
+    
+    
+
+        <Grid x:Name="Top" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="Auto" MinWidth="55" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="E_xit" Command="{Binding Exit}"/>
+                </MenuItem>
+                <MenuItem Header="_Edit"/>
+                <MenuItem Header="_Help"/>
+            </Menu>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            <Button Grid.Column="2" Content="Login" />
+        </Grid>
+
+</UserControl>
