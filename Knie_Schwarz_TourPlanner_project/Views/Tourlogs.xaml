@@ -22,9 +22,9 @@
             <Grid Grid.Row="0">
                 <Label Grid.Row="0" Background="Blue" Foreground="White" Content="Tour Logs" HorizontalAlignment="Left"/>
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="+" Padding="2" HorizontalAlignment="Right"/>
-                    <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="-" Padding="2" HorizontalAlignment="Right"/>
-                    <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="..." Padding="2" HorizontalAlignment="Right"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="+" Padding="2" HorizontalAlignment="Right" Command="{Binding Path=logVM.AddLog}"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="-" Padding="2" HorizontalAlignment="Right" Command="{Binding Path=logVM.DeleteLog}"/>
+                <Button  Background="Blue" Foreground="White" Grid.Row="0" Grid.Column="0" Content="..." Padding="2" HorizontalAlignment="Right" Command="{Binding Path=logVM.UpdateLog}"/>
                 </StackPanel>
             </Grid>
 

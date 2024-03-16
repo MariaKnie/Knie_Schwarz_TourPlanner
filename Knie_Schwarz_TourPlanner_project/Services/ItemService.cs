@@ -67,7 +67,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             set
             {
                 activeRoute = value;
-                OnPropertyChanged(nameof(activeRoute));
+                OnPropertyChanged(nameof(ActiveRoute));
             }
         }
 
@@ -77,7 +77,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             set
             {
                 activeLogModel = value;
-                OnPropertyChanged(nameof(activeLogModel));
+                OnPropertyChanged(nameof(ActiveLogModel));
             }
         }
         protected void OnPropertyChanged(string propertyName)

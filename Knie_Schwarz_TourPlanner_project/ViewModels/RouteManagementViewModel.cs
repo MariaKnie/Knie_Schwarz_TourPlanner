@@ -90,8 +90,10 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
             {
                 if (ActiveRoute != null && ActiveRoute.RouteName != "")
                 {
+                    //back up
                     noChanges = ActiveRoute;
 
+                    //filling values
                     _routeName = ActiveRoute.RouteName;
                     _routeDiscription = ActiveRoute.RouteDiscription;
                     _routeStart = ActiveRoute.RouteStart;
@@ -106,11 +108,12 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 noChanges.RouteName = "";   //used to determine if new later
                 newRoute = new RouteModel();
 
-                _routeName = newRoute.RouteName;
-                _routeDiscription = newRoute.RouteDiscription;
-                _routeStart = newRoute.RouteStart;
-                _routeGoal = newRoute.RouteGoal;
-                _transportType = newRoute.TransportType;
+                //Clearing Values
+                _routeName = "";
+                _routeDiscription = "";
+                _routeStart = "";
+                _routeGoal = "";
+                _transportType = "";
 
             });
 
@@ -132,8 +135,10 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                                 throw new Exception("Invalid Input. Please enter only letters");
                             }
                             //set new values
+                            newRoute = new RouteModel();
                             //this.CalculateDuration.Execute(this);
                             //this.CalculateDistance.Execute(this);
+
                             newRoute.RouteStart = _routeStart;
                             newRoute.RouteGoal = _routeGoal;
                             newRoute.TransportType = _transportType;
@@ -141,23 +146,26 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                             newRoute.RouteName = _routeName;
                             newRoute.RouteDistance = 100;  //PlaceHolder
                             newRoute.EstimatedDuration = "1 hour";  //PlaceHolder
+
                             //add if new route
-                            this.CloseWindow.Execute(this);
                             if (noChanges.RouteName == "")
                             {
-                                Debug.Print($"Added new Route");
+                                //Debug.Print($"Added new Route {ActiveRoute.RouteName}");
                                 RouteList.Add(newRoute);
                                 ActiveRoute = newRoute;
                                 OnPropertyChanged(nameof(RouteList));
                             }
                             else
                             {   //updates active item
-                                Debug.Print($"Updated Route");
+                                Debug.Print($"Updated Route {ActiveRoute.RouteName}");
                                 int index = RouteList.IndexOf(ActiveRoute);
                                 RouteList[index] = newRoute;
                                 ActiveRoute = newRoute;
                                 OnPropertyChanged(nameof(RouteList));
                             }
+
+                            newRoute = new RouteModel();
+                            this.CloseWindow.Execute(this);
                         }
                     }
                     catch (Exception ex)
