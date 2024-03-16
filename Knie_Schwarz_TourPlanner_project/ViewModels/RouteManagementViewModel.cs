@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Knie_Schwarz_TourPlanner_project.Models;
 using Knie_Schwarz_TourPlanner_project.Interfaces;
+using Knie_Schwarz_TourPlanner_project.Services;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
@@ -26,91 +27,78 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
 
         RouteModel noChanges = new RouteModel(); //if no changes are made
 
-        private ObservableCollection<RouteModel> routeList { get; set;} = new ObservableCollection<RouteModel>()
-        {
-            new RouteModel()
-            {
-                 RouteName = "Wienerwald", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here"
-            },
-            new RouteModel()
-            {
-                RouteName = "Dopplerhütte"
-            },
-            new RouteModel()
-            {
-                RouteName = "Figlwarte"
-            },
-            new RouteModel()
-            {
-                RouteName = "Dorfrunde"
-            },
-        };
 
+        public IItemService ItemService { get; set; }
+
+        //Get List from ItemService
         public ObservableCollection<RouteModel> RouteList
         {
-            get => routeList;
+            get => ItemService.Routes;
             set
             {
-                OnPropertyChanged("RouteList");
+                OnPropertyChanged(nameof(ItemService.Routes));
+                OnPropertyChanged(nameof(RouteList));
                 Debug.Print("updated List");
-                routeList = value;
+                ItemService.Routes = value;
             }
         }
 
 
+
         public RelayCommand DeleteRouteCommand { get; }
         public RelayCommand CreateRouteCommand { get; }
-        public RelayCommand LoadRoute {  get; }
+        public RelayCommand LoadRoute { get; }
         public RelayCommand LoadRouteAdd { get; }
         public RelayCommand EditRouteCommand { get; }
         public RelayCommand CheckEditorCommand { get; }
 
         public CloseWindowCommand CloseWindow { get; } = new CloseWindowCommand();
 
-        private RouteModel? activeRoute;
         RouteModel newRoute = new RouteModel();
-        public RouteEditViewModel REVM = new RouteEditViewModel();
+        //public RouteEditViewModel REVM = new RouteEditViewModel();
 
         public RouteModel? ActiveRoute
         {
-            get => activeRoute;
+            get => ItemService.ActiveRoute;
             set
             {
-                activeRoute = value;
+                ItemService.ActiveRoute = value;
                 DeleteRouteCommand.RaiseCanExecuteChanged();
                 EditRouteCommand.RaiseCanExecuteChanged();
+                OnPropertyChanged(nameof(ItemService.ActiveRoute));
             }
         }
 
-        public RouteManagementViewModel()
+        public RouteManagementViewModel(IItemService itemService)
         {
+            ItemService = itemService;
             DeleteRouteCommand = new RelayCommand((_) =>
             {
-                if (activeRoute != null)
+                if (ActiveRoute != null)
                 {
-                    Debug.Print($"Delete route {activeRoute?.RouteName}");
-                    RouteList.Remove(activeRoute);
+                    Debug.Print($"Delete route {ActiveRoute?.RouteName}");
+                    RouteList.Remove(ActiveRoute);
 
                     Debug.Print("List items:" + RouteList.Count);
 
                 }
                 OnPropertyChanged(nameof(RouteList));
             },
-            (_) => activeRoute != null);
+            (_) => ActiveRoute != null);
 
             LoadRoute = new RelayCommand((_) =>
             {
-            if (activeRoute != null && activeRoute.RouteName != "")
+                if (ActiveRoute != null && ActiveRoute.RouteName != "")
                 {
-                    noChanges = activeRoute;
+                    noChanges = ActiveRoute;
 
-                    _routeName = activeRoute.RouteName;
-                    _routeDiscription = activeRoute.RouteDiscription;
-                    _routeStart = activeRoute.RouteStart;
-                    _routeGoal = activeRoute.RouteGoal;
-                    _transportType = activeRoute.TransportType;
+                    _routeName = ActiveRoute.RouteName;
+                    _routeDiscription = ActiveRoute.RouteDiscription;
+                    _routeStart = ActiveRoute.RouteStart;
+                    _routeGoal = ActiveRoute.RouteGoal;
+                    _transportType = ActiveRoute.TransportType;
                 }
-                
+
             });
 
             LoadRouteAdd = new RelayCommand((_) =>
@@ -155,17 +143,19 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                             newRoute.EstimatedDuration = "1 hour";  //PlaceHolder
                             //add if new route
                             this.CloseWindow.Execute(this);
-                            if(noChanges.RouteName == "")
+                            if (noChanges.RouteName == "")
                             {
                                 Debug.Print($"Added new Route");
                                 RouteList.Add(newRoute);
+                                ActiveRoute = newRoute;
                                 OnPropertyChanged(nameof(RouteList));
                             }
                             else
                             {   //updates active item
                                 Debug.Print($"Updated Route");
-                                int index = RouteList.IndexOf(activeRoute);
+                                int index = RouteList.IndexOf(ActiveRoute);
                                 RouteList[index] = newRoute;
+                                ActiveRoute = newRoute;
                                 OnPropertyChanged(nameof(RouteList));
                             }
                         }
@@ -184,7 +174,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
 
             CreateRouteCommand = new RelayCommand((_) =>
             {
-                
+
                 //open edit window
                 var routeEditWnd = new Views.RouteManagerWindow()
                 {
@@ -196,9 +186,9 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
 
             EditRouteCommand = new RelayCommand((_) =>
             {
-                if (activeRoute != null)
+                if (ActiveRoute != null)
                 {
-                    Debug.Print($"Edit route {activeRoute?.RouteName}");
+                    Debug.Print($"Edit route {ActiveRoute?.RouteName}");
                     //open edit window
                     var routeEditWnd = new Views.RouteManagerWindow()
                     {
@@ -208,9 +198,9 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                     this.LoadRoute.Execute(this);
                     routeEditWnd.Show();
                 }
-                
+
             },
-            (_) => activeRoute != null);
+            (_) => ActiveRoute != null);
         }
     }
 }

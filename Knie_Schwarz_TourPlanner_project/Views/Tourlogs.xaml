@@ -39,8 +39,13 @@
                 <ListBoxItem Background="AliceBlue" Content="Date"/>
                 <ListBoxItem Background="AliceBlue" Content="Time"/>
                 <ListBoxItem Background="AliceBlue" Content="Duration"/>
-
-                <ListBoxItem  x:Name="d"  Content="{Binding routeManagementVM.ActiveRoute.RouteName}"/>
+                <ListView x:Name="LogList" ItemsSource="{Binding routeManagementVM.ActiveRoute.TourLogs, AsyncState=true}" SelectedItem="{Binding logVM.ActiveTourLogModel}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Routes" Width="200" DisplayMemberBinding="{Binding Date}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
                 <ListBoxItem Content="Row 2, Column 2"/>
                 <ListBoxItem Content="Row 2, Column 3"/>
                 <ListBoxItem Content="Row 3, Column 1"/>

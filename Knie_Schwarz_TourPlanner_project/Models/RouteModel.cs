@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Knie_Schwarz_TourPlanner_project.Models
 {
@@ -16,5 +17,7 @@ namespace Knie_Schwarz_TourPlanner_project.Models
         public float RouteDistance { get; set; } = 0;
         public string EstimatedDuration { get; set; } = "";
         //RouteInformation missing -> image
+        public string mapURL = "\\Assets\\Images\\map.jpg";
+        public List<TourLogModel> TourLogs { get; set; } = new List<TourLogModel>();
     }
 }

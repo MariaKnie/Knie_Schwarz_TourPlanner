@@ -12,6 +12,6 @@ namespace Knie_Schwarz_TourPlanner_project.Models
         public float Duration { get; set; }
         public float Distance { get; set; }
         public float Difficulty { get; set; }
-        public int ChildFriendliness { get; set; }
+        public int Childfriendliness { get; set; }
     }
 }
