@@ -10,6 +10,16 @@ using System.Windows;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
+
+    //----------------------------------
+
+    //NOT USED rn
+
+    //-------------------------------
+
+
+
+
     public class LoginViewModel : ViewModelBase
     {
         public ICommand LoginCommand { get; }

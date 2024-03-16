@@ -20,7 +20,7 @@
 
         <Popup x:Name="myPopup" Placement="Center" IsOpen="False">
             <Border Background="LightGray" BorderBrush="Black" BorderThickness="1" Width="200" Height="100">
-                <TextBlock  Text="{Binding Path=loginVM.GreetingText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock  Text="Greet" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Popup>
 
@@ -37,8 +37,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Enter your name:" Margin="0,0,0,24" Grid.RowSpan="2" />
-            <TextBox Grid.Column="2" Text="{Binding Path=loginVM.GreetingName}" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
-            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80" Command="{Binding Path=loginVM.GreetCommand}"/>
+            <TextBox Grid.Column="2" Text="GreetingName" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+            <Button  Grid.Row="1" Grid.Column="0" Content="Greet Me" Width="80"/>
             <Button  Grid.Row="1" Grid.Column="3" Content="Exit" Width="80" Command="{Binding Path=Exit}" HorizontalAlignment="Left"/>
             <!-- GridSplitter Vertical -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5" HorizontalAlignment="Center" />
@@ -67,7 +67,7 @@
                 <MenuItem Header="_Help"/>
             </Menu>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <Button Grid.Column="2" Content="Login"  Command="{Binding Path=loginVM.LoginCommand}"/>
+            <Button Grid.Column="2" Content="Login" />
         </Grid>
 
         <!-- Search Field -->
@@ -134,7 +134,7 @@
                     <Image Source="{StaticResource map}" Stretch="UniformToFill"/>
                     <Viewbox>
                         <!-- Text Display -->
-                        <Label DockPanel.Dock="Left" Content="{Binding loginVM.GreetingText}" FontSize="15" FontWeight="Bold" />
+                        <Label DockPanel.Dock="Left" Content="GreetingText" FontSize="15" FontWeight="Bold" />
                     </Viewbox>
                 </Grid>
 

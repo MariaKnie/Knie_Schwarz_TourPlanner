@@ -22,8 +22,13 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
             _execute = execute;
             _canExecute = canExecute;
         }
+        public event EventHandler? CanExecuteChange;    //for raise execute
 
-        public event EventHandler? CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
 
         public bool CanExecute(object? parameter)
         {
@@ -38,7 +43,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         internal void RaiseCanExecuteChanged()
         {
             if (_canExecute != null)
-                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                CanExecuteChange?.Invoke(this, EventArgs.Empty);
         }
     }
 }
