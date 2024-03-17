@@ -11,7 +11,7 @@ namespace TaskPlannerA.Tests.ViewModels
         public void Setup()
         {
             //edtVM = new EditorViewModel();
-            //mainVM = new MainViewModel(edtVM);
+            mainVM = new MainViewModel(edtVM);
             mainVM = new MainViewModel;
         }
 

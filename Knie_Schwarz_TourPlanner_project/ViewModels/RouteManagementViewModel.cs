@@ -10,6 +10,7 @@ using Knie_Schwarz_TourPlanner_project.Models;
 using Knie_Schwarz_TourPlanner_project.Interfaces;
 using Knie_Schwarz_TourPlanner_project.Services;
 using System.Security.Cryptography.X509Certificates;
+using Knie_Schwarz_TourPlanner_project.Views;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
@@ -20,6 +21,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         public string _routeStart { get; set; } = "";
         public string _routeGoal { get; set; } = "";
         public string _transportType { get; set; } = "";
+        public List<TourLogModel> _tourlogs { get; set; } = null;
 
 
         //public ICommand CalculateDistance { get; }
@@ -117,6 +119,9 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 _routeStart = Route.RouteStart;
                 _routeGoal = Route.RouteGoal;
                 _transportType = Route.TransportType;
+                _tourlogs = Route.TourLogs;
+
+
             }
 
             void ClearVariables()
@@ -127,6 +132,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 _routeStart = "";
                 _routeGoal = "";
                 _transportType = "";
+                _tourlogs = new List<TourLogModel>();
             }
 
 
@@ -201,6 +207,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 newRoute.RouteName = _routeName;
                 newRoute.RouteDistance = 100;  //PlaceHolder
                 newRoute.EstimatedDuration = "1 hour";  //PlaceHolder
+                newRoute.TourLogs = _tourlogs;
             }
 
             // Adding Route

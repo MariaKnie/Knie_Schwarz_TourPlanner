@@ -101,7 +101,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                         Log.Childfriendliness = _Childfriendliness;
                         Log.Difficulty = _Difficulty;
                         Log.Distance = _Distance;
-                        Log.Difficulty = _Difficulty;
+                        Log.Duration = _Duration;
                         Log.Date = DateTime.Now;
 
                         ItemService.ActiveRoute.TourLogs.Add(Log);
