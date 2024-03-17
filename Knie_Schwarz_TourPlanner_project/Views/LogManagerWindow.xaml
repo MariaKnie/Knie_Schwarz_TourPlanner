@@ -5,14 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
         mc:Ignorable="d"
-        Title="LogManagerWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox Text="{Binding Path=_Childfriendliness}" PreviewTextInput="NumberValidationTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,217,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_Distance}" PreviewTextInput="NumberValidationTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,150,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_Duration}" PreviewTextInput="NumberValidationTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,107,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_Difficulty}" PreviewTextInput="NumberValidationTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,67,185,0" Height="37" />
+        Title="LogManagerWindow" Height="250" Width="200"
+        MinWidth="200" 
+        MinHeight="250">
+    
+    <Grid Margin="5">
 
-        <Button  Grid.Row="1" Grid.Column="3" Content="Save" Width="80" Command="{Binding Path=SaveLog}" HorizontalAlignment="Left"/>
-        <Button Content="Abort" Width="80" Command="{Binding Path=CloseWindow}" HorizontalAlignment="Left" Margin="85,0,0,0"/>
-    </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- GridSplitter Horizontal -->
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+        <!--<Rectangle Fill="Gray"/>-->
+        <StackPanel Grid.Row="0" Width=" auto" Margin="10 ,0 ,10, 0">
+            <Label Background="Blue" Foreground="White" Content="Childfriendliness"/>
+            <TextBox  Text="{Binding Path=_Childfriendliness}" PreviewTextInput="NumberValidationTextBox"/>
+
+            <Label Background="Blue" Foreground="White" Content="Distance" />
+            <TextBox Text="{Binding Path=_Distance}" PreviewTextInput="NumberValidationTextBox"   />
+
+            <Label Background="Blue" Foreground="White" Content="Duration" />
+            <TextBox Text="{Binding Path=_Duration}" PreviewTextInput="NumberValidationTextBox" />
+
+            <Label Background="Blue" Foreground="White" Content="Difficulty" />
+            <TextBox Text="{Binding Path=_Difficulty}" PreviewTextInput="NumberValidationTextBox"  />
+        </StackPanel>
+
+        <Grid Grid.Row="2" >
+            <Button Background="Crimson" Padding="10" Content="Abort"  Command="{Binding Path=CloseWindow}" HorizontalAlignment="Left" />
+            <Button Background="GreenYellow" Padding="10" Content="Save"  Command="{Binding Path=SaveLog}" HorizontalAlignment="Right"/>
+        </Grid>
+</Grid>
 </Window>

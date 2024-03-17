@@ -57,7 +57,6 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         public LogViewModel(IItemService itemService)
         {
             ItemService = itemService;
-
             AddLog = new RelayCommand((_) =>
             {
                 var logEditWnd = new Views.LogManagerWindow()
@@ -95,10 +94,10 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 Debug.WriteLine($"Check if complete and correct");
                 try
                 {
-                    if (!editLog)
+                    if (!editLog) // adding log
                     {
-                        Debug.Print($"Added new Log");
-                        TourLogModel Log = new TourLogModel();
+                        Debug.Print($"Added new Log {_Childfriendliness}");
+                        TourLogModel Log = new TourLogModel();                   
                         Log.Childfriendliness = _Childfriendliness;
                         Log.Difficulty = _Difficulty;
                         Log.Distance = _Distance;
@@ -107,11 +106,13 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
 
                         ItemService.ActiveRoute.TourLogs.Add(Log);
 
-                        OnPropertyChanged(nameof(ActiveTourLogModel));
+                        ItemService.ActiveLogModel = Log;
+
+                        OnPropertyChanged(nameof(ItemService.ActiveLogModel));
                     }
-                    else
+                    else // updating
                     {   //updates active item
-                        Debug.Print($"Updated Log");
+                        Debug.Print($"Updated Log {_Childfriendliness}");
                         TourLogModel Log = new TourLogModel();
                         Log.Childfriendliness = _Childfriendliness;
                         Log.Difficulty = _Difficulty;
@@ -121,11 +122,11 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
 
                         ItemService.ActiveLogModel = Log;
 
-                        OnPropertyChanged(nameof(ActiveTourLogModel));
+                        OnPropertyChanged(nameof(ItemService.ActiveLogModel));
                     }
                     this.CloseWindow.Execute(this);
                 }
-                catch (Exception ex)
+                catch (Exception ex) // converting error
                 {
                     Debug.WriteLine(ex.ToString());
                 }

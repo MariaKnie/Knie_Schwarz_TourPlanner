@@ -49,15 +49,72 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Dopplerhütte"
+                RouteName = "Dopplerhütte", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                 TourLogs = new List<TourLogModel>()
+                 {
+                     new TourLogModel()
+                     {
+                         Date = DateTime.Now.AddDays(10),
+                         Duration = 50,
+                         Distance = 40,
+                         Difficulty = 7,
+                         Childfriendliness = 2
+                     },
+                     new TourLogModel()
+                     {
+                         Date = DateTime.Now.AddDays(18),
+                         Duration = 90,
+                         Distance = 100,
+                         Difficulty = 2,
+                         Childfriendliness = 5
+                     },
+                 }
             },
             new RouteModel()
             {
-                RouteName = "Figlwarte"
+                RouteName = "Figlwarte", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                 TourLogs = new List<TourLogModel>()
+                 {
+                     new TourLogModel()
+                     {
+                         Date = DateTime.Now.AddDays(1),
+                         Duration = 50,
+                         Distance = 40,
+                         Difficulty = 7,
+                         Childfriendliness = 2
+                     },
+                     new TourLogModel()
+                     {
+                         Date = DateTime.Now.AddDays(3),
+                         Duration = 50,
+                         Distance = 7,
+                         Difficulty = 2,
+                         Childfriendliness = 5
+                     },
+                 }
             },
             new RouteModel()
             {
-                RouteName = "Dorfrunde"
+                RouteName = "Dorfrunde", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                 TourLogs = new List<TourLogModel>()
+                 {
+                     new TourLogModel()
+                     {
+                         Date = DateTime.Now.AddDays(7),
+                         Duration = 60,
+                         Distance = 40,
+                         Difficulty = 7,
+                         Childfriendliness = 2
+                     },
+                     new TourLogModel()
+                     {
+                         Date = DateTime.Now.AddDays(9),
+                         Duration = 70,
+                         Distance = 9,
+                         Difficulty = 5,
+                         Childfriendliness = 3
+                     },
+                 }
             },
         };
 
@@ -66,7 +123,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             get => activeRoute;
             set
             {
-                activeRoute = value;
+                activeRoute =  value;
                 OnPropertyChanged(nameof(ActiveRoute));
             }
         }

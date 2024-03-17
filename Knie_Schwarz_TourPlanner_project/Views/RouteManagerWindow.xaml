@@ -5,15 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
         mc:Ignorable="d"
-        Title="RouteManagerWindow" Height="450" Width="800">
+        Title="RouteManagerWindow" Height="350" Width="200"
+        MinWidth="200" 
+        MinHeight="350">
     <Grid>
-        <TextBox Text="{Binding Path=_routeName}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,217,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_routeStart}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,150,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_routeGoal}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,107,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_routeDiscription}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,67,185,0" Height="37" />
-        <TextBox Text="{Binding Path=_transportType}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="246,21,185,0" Height="37" />
+        <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
 
-        <Button  Grid.Row="1" Grid.Column="3" Content="Save" Width="80" Command="{Binding Path=CheckEditorCommand}" HorizontalAlignment="Left"/>
-        <Button Content="Abort" Width="80" Command="{Binding Path=CloseWindow}" HorizontalAlignment="Left" Margin="85,0,0,0"/>
+
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+            <StackPanel Grid.Row="0" Width=" auto" Margin="10 ,0 ,10, 0">
+                <Label Background="Blue" Foreground="White" Content="routeName"/>
+                <TextBox   Text="{Binding Path=_routeName}" />
+
+
+                <Label Background="Blue" Foreground="White" Content="RouteStart" />
+                <TextBox Text="{Binding Path=_routeStart}"    />
+
+                <Label Background="Blue" Foreground="White" Content="RouteGoal" />
+                <TextBox Text="{Binding Path=_routeGoal}" />
+
+                <Label Background="Blue" Foreground="White" Content="RouteDiscription" />
+                <TextBox Text="{Binding Path=_routeDiscription}"  />
+
+                <Label Background="Blue" Foreground="White" Content="TransportType" />
+                <TextBox Text="{Binding Path=_transportType}"  />
+            </StackPanel>
+
+        <Grid Grid.Row="2" >
+            <Button Background="Crimson" Padding="10" Content="Abort"  Command="{Binding Path=CloseWindow}" HorizontalAlignment="Left" />
+            <Button Background="GreenYellow" Padding="10" Content="Save" Command="{Binding Path=CheckEditorCommand}" HorizontalAlignment="Right"/>
+        </Grid>
     </Grid>
 </Window>

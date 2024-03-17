@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Knie_Schwarz_TourPlanner_project.Models;
 using Knie_Schwarz_TourPlanner_project.Interfaces;
 using Knie_Schwarz_TourPlanner_project.Services;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
 {
@@ -25,7 +26,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         //public ICommand CalculateDuration { get; }
         public bool complete { get; set; } = false;
 
-        RouteModel noChanges = new RouteModel(); //if no changes are made
+        RouteModel beforeEditing = new RouteModel(); //if no changes are made
 
 
         public IItemService ItemService { get; set; }
@@ -72,51 +73,64 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         public RouteManagementViewModel(IItemService itemService)
         {
             ItemService = itemService;
+
+            //Deleting Route
             DeleteRouteCommand = new RelayCommand((_) =>
             {
                 if (ActiveRoute != null)
                 {
                     Debug.Print($"Delete route {ActiveRoute?.RouteName}");
                     RouteList.Remove(ActiveRoute);
-
                     Debug.Print("List items:" + RouteList.Count);
-
                 }
                 OnPropertyChanged(nameof(RouteList));
             },
             (_) => ActiveRoute != null);
 
+            //Loading exsisting Route
             LoadRoute = new RelayCommand((_) =>
             {
                 if (ActiveRoute != null && ActiveRoute.RouteName != "")
                 {
                     //back up
-                    noChanges = ActiveRoute;
-
+                    beforeEditing = ActiveRoute;
                     //filling values
-                    _routeName = ActiveRoute.RouteName;
-                    _routeDiscription = ActiveRoute.RouteDiscription;
-                    _routeStart = ActiveRoute.RouteStart;
-                    _routeGoal = ActiveRoute.RouteGoal;
-                    _transportType = ActiveRoute.TransportType;
+                    fillingValues(ActiveRoute);
                 }
-
             });
 
+            //Loading parameters for Adding
             LoadRouteAdd = new RelayCommand((_) =>
             {
-                noChanges.RouteName = "";   //used to determine if new later
+                beforeEditing.RouteName = "";   //used to determine if new later
                 newRoute = new RouteModel();
 
+                //Clearing Values
+                ClearVariables();
+            });
+
+            void fillingValues( RouteModel Route)
+            {
+                //filling values
+                _routeName = Route.RouteName;
+                _routeDiscription = Route.RouteDiscription;
+                _routeStart = Route.RouteStart;
+                _routeGoal = Route.RouteGoal;
+                _transportType = Route.TransportType;
+            }
+
+            void ClearVariables()
+            {
                 //Clearing Values
                 _routeName = "";
                 _routeDiscription = "";
                 _routeStart = "";
                 _routeGoal = "";
                 _transportType = "";
+            }
 
-            });
 
+            // Confirming Route
             CheckEditorCommand = new RelayCommand((_) =>
             {
                 Debug.WriteLine($"Check if complete and correct");
@@ -134,28 +148,18 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                             {
                                 throw new Exception("Invalid Input. Please enter only letters");
                             }
-                            //set new values
-                            newRoute = new RouteModel();
-                            //this.CalculateDuration.Execute(this);
-                            //this.CalculateDistance.Execute(this);
 
-                            newRoute.RouteStart = _routeStart;
-                            newRoute.RouteGoal = _routeGoal;
-                            newRoute.TransportType = _transportType;
-                            newRoute.RouteDiscription = _routeDiscription;
-                            newRoute.RouteName = _routeName;
-                            newRoute.RouteDistance = 100;  //PlaceHolder
-                            newRoute.EstimatedDuration = "1 hour";  //PlaceHolder
+                            FillRoute(ref newRoute);
 
                             //add if new route
-                            if (noChanges.RouteName == "")
+                            if (beforeEditing.RouteName == "") // new route
                             {
-                                //Debug.Print($"Added new Route {ActiveRoute.RouteName}");
+                                Debug.Print($"Added new Route {newRoute.RouteName}");
                                 RouteList.Add(newRoute);
                                 ActiveRoute = newRoute;
                                 OnPropertyChanged(nameof(RouteList));
                             }
-                            else
+                            else // updating
                             {   //updates active item
                                 Debug.Print($"Updated Route {ActiveRoute.RouteName}");
                                 int index = RouteList.IndexOf(ActiveRoute);
@@ -164,25 +168,44 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                                 OnPropertyChanged(nameof(RouteList));
                             }
 
+                            //clear again
                             newRoute = new RouteModel();
                             this.CloseWindow.Execute(this);
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception ex) // Coverting error
                     {
                         Debug.WriteLine(ex.ToString());
                     }
                     complete = false;
                 }
-                else
+                else // not all values set
                 {
                     Debug.WriteLine("Incomplete Information");
                 }
             });
 
+
+
+            void FillRoute(ref RouteModel newRoute)
+            {
+                //set new values
+                newRoute = new RouteModel();
+                //this.CalculateDuration.Execute(this);
+                //this.CalculateDistance.Execute(this);
+
+                newRoute.RouteStart = _routeStart;
+                newRoute.RouteGoal = _routeGoal;
+                newRoute.TransportType = _transportType;
+                newRoute.RouteDiscription = _routeDiscription;
+                newRoute.RouteName = _routeName;
+                newRoute.RouteDistance = 100;  //PlaceHolder
+                newRoute.EstimatedDuration = "1 hour";  //PlaceHolder
+            }
+
+            // Adding Route
             CreateRouteCommand = new RelayCommand((_) =>
             {
-
                 //open edit window
                 var routeEditWnd = new Views.RouteManagerWindow()
                 {
@@ -192,6 +215,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 routeEditWnd.Show();
             });
 
+            // Edit Route
             EditRouteCommand = new RelayCommand((_) =>
             {
                 if (ActiveRoute != null)
@@ -206,7 +230,6 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                     this.LoadRoute.Execute(this);
                     routeEditWnd.Show();
                 }
-
             },
             (_) => ActiveRoute != null);
         }

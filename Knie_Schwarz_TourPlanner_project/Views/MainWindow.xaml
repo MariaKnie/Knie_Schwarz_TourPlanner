@@ -23,7 +23,6 @@
         <!-- Bottom Grid -->
         <Grid x:Name="Bottom" DockPanel.Dock="Bottom">
             <!--<local:Bottom/>-->
-
         </Grid>
 
         <!-- Top Grid -->
@@ -53,53 +52,31 @@
             <!-- GridSplitter Vertical -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
-            <Grid Grid.Row="1">
-                <!-- GridSplitter Horizontal -->
-                <Rectangle Fill="Blue"/>
-            </Grid>
-
+            <!-- RectFill Horizontal -->
+            <Rectangle Fill="Blue"  Grid.Row="1"/>
+            
             <Label Background="Blue" Foreground="White" Content="Tours" HorizontalAlignment="Left"/>
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <StackPanel Name="LeftButtons" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button  Background="Blue" Foreground="White" Content="+" Padding="2" HorizontalAlignment="Right" Command="{Binding Path=routeManagementVM.CreateRouteCommand}"/>
                 <Button  Background="Blue" Foreground="White" Content="-" Padding="2" HorizontalAlignment="Right" Command="{Binding Path=routeManagementVM.DeleteRouteCommand}"/>
                 <Button  Background="Blue" Foreground="White" Content="..." Padding="2" HorizontalAlignment="Right" Command="{Binding Path=routeManagementVM.EditRouteCommand}"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
+            <Grid x:Name="LeftSide" Grid.Column="0" Grid.Row="2">
+                <local:TourList Loaded="TourList_Loaded"/>
+            </Grid>
+   
+
+            <StackPanel Name="RightMenu" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Grid.Row="0" Grid.Column="0" Content="General" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Route" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Misc" Padding="2" HorizontalAlignment="Right"/>
             </StackPanel>
-
-
-
-
-            <Grid x:Name="LeftSide" Grid.Column="0" Grid.Row="2">
-                <local:TourList/>
+        
+            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
+                <local:Route/>
             </Grid>
-
-        <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-
-                <Grid x:Name="Map" Grid.Row="0">
-                    <local:Map/>
-                </Grid>
-
-                <!-- GridSplitter Horizontal -->
-                <GridSplitter Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"/>
-
-                <!-- Under Picture-->
-                <Grid x:Name="UnderPicture" Grid.Row="2">
-                    <local:Tourlogs/>
-
-                </Grid>
-
-               
-            </Grid>
+            
         </Grid>
     </DockPanel>
 </Window>

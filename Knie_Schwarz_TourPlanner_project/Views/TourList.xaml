@@ -11,7 +11,7 @@
                 <ListView x:Name="RouteList1" ItemsSource="{Binding routeManagementVM.RouteList, AsyncState=true}" SelectedItem="{Binding routeManagementVM.ActiveRoute}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Routes" Width="200" DisplayMemberBinding="{Binding RouteName}"/>
+                            <GridViewColumn Header="Tours" Width="200" DisplayMemberBinding="{Binding RouteName}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

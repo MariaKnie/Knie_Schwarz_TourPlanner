@@ -42,7 +42,7 @@
                 <ListView x:Name="LogList" ItemsSource="{Binding routeManagementVM.ActiveRoute.TourLogs, AsyncState=true}" SelectedItem="{Binding logVM.ActiveTourLogModel}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Routes" Width="200" DisplayMemberBinding="{Binding Date}"/>
+                            <GridViewColumn Header="Logs" Width="200" DisplayMemberBinding="{Binding Date}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

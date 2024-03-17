@@ -41,5 +41,15 @@ namespace Knie_Schwarz_TourPlanner_project.Views
             //myPopup.IsOpen = false;
             timer.Stop();
         }
+
+        private void Tourlogs_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TourList_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

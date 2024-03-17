@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Knie_Schwarz_TourPlanner_project.Views.Route"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid x:Name="RightSide" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Map" Grid.Row="0">
+                <local:Map/>
+            </Grid>
+
+            <!-- GridSplitter Horizontal -->
+            <GridSplitter Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"/>
+
+            <!-- Under Picture-->
+            <Grid x:Name="UnderPicture" Grid.Row="2">
+                <local:Tourlogs/>
+
+            </Grid>
+
+
+        </Grid>
+
+    </Grid>
+</UserControl>
