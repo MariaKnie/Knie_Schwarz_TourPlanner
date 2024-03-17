@@ -113,14 +113,18 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                     else // updating
                     {   //updates active item
                         Debug.Print($"Updated Log {_Childfriendliness}");
-                        TourLogModel Log = new TourLogModel();
-                        Log.Childfriendliness = _Childfriendliness;
-                        Log.Difficulty = _Difficulty;
-                        Log.Distance = _Distance;
-                        Log.Difficulty = _Difficulty;
-                        Log.Date = DateTime.Now;
+                        ItemService.ActiveLogModel.Childfriendliness = _Childfriendliness;
+                        ItemService.ActiveLogModel.Difficulty = _Difficulty;
+                        ItemService.ActiveLogModel.Distance = _Distance;
+                        ItemService.ActiveLogModel.Duration = _Duration;
+                        ItemService.ActiveLogModel.Difficulty = _Difficulty;
+                        ItemService.ActiveLogModel.Date = DateTime.Now;
 
-                        ItemService.ActiveLogModel = Log;
+
+                        //int index = ItemService.ActiveRoute.TourLogs.IndexOf(ItemService.ActiveLogModel);
+                        //ItemService.ActiveRoute.TourLogs[index] = Log;
+
+                        //Debug.Print($"Found to updatee at {index}");
 
                         OnPropertyChanged(nameof(ItemService.ActiveLogModel));
                     }

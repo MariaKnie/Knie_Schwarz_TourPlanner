@@ -51,5 +51,10 @@ namespace Knie_Schwarz_TourPlanner_project.Views
         {
 
         }
+
+        private void Route_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
