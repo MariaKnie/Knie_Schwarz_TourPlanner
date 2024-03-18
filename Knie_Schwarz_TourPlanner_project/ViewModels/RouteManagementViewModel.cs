@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Knie_Schwarz_TourPlanner_project.Models;
-using Knie_Schwarz_TourPlanner_project.Interfaces;
 using Knie_Schwarz_TourPlanner_project.Services;
 using System.Security.Cryptography.X509Certificates;
 using Knie_Schwarz_TourPlanner_project.Views;

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Knie_Schwarz_TourPlanner_project.Services
 {
@@ -22,6 +23,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
         public event PropertyChangedEventHandler? PropertyChanged;
         private RouteModel? activeRoute { get; set; }
         private TourLogModel? activeLogModel { get; set; }
+     
         public ObservableCollection<RouteModel> Routes { get; set; } = new ObservableCollection<RouteModel>()
         {
             new RouteModel()

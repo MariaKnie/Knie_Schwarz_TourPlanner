@@ -3,6 +3,7 @@ using Knie_Schwarz_TourPlanner_project.Services;
 using Knie_Schwarz_TourPlanner_project.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Net;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Knie_Schwarz_TourPlanner_project.ViewModels
@@ -51,6 +53,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 ItemService.ActiveLogModel = value;
                 DeleteLog.RaiseCanExecuteChanged();
                 UpdateLog.RaiseCanExecuteChanged();
+                Debug.Print("Update Logs");
                 OnPropertyChanged(nameof(ItemService.ActiveLogModel));
             }
         }
