@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using System.Collections.ObjectModel;
+
 namespace Knie_Schwarz_TourPlanner_project.Models
 {
     public class RouteModel
@@ -18,6 +20,6 @@ namespace Knie_Schwarz_TourPlanner_project.Models
         public string EstimatedDuration { get; set; } = "";
         //RouteInformation missing -> image
         public string mapURL = "\\Assets\\Images\\map.jpg";
-        public List<TourLogModel> TourLogs { get; set; } = new List<TourLogModel>();
+        public ObservableCollection<TourLogModel> TourLogs { get; set; } = new ObservableCollection<TourLogModel>();
     }
 }

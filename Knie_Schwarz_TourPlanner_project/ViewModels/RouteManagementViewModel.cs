@@ -20,7 +20,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         public string _routeStart { get; set; } = "";
         public string _routeGoal { get; set; } = "";
         public string _transportType { get; set; } = "";
-        public List<TourLogModel> _tourlogs { get; set; } = null;
+        public ObservableCollection<TourLogModel> _tourlogs { get; set; } = null;
 
 
         //public ICommand CalculateDistance { get; }
@@ -131,7 +131,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
                 _routeStart = "";
                 _routeGoal = "";
                 _transportType = "";
-                _tourlogs = new List<TourLogModel>();
+                _tourlogs = new ObservableCollection<TourLogModel>();
             }
 
 

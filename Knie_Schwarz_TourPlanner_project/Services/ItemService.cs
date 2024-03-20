@@ -29,7 +29,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             new RouteModel()
             {
                  RouteName = "Wienerwald", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
-                 TourLogs = new List<TourLogModel>()
+                 TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
                      {
@@ -52,7 +52,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             new RouteModel()
             {
                 RouteName = "Dopplerhütte", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
-                 TourLogs = new List<TourLogModel>()
+                 TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
                      {
@@ -75,7 +75,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             new RouteModel()
             {
                 RouteName = "Figlwarte", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
-                 TourLogs = new List<TourLogModel>()
+                 TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
                      {
@@ -98,7 +98,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             new RouteModel()
             {
                 RouteName = "Dorfrunde", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
-                 TourLogs = new List<TourLogModel>()
+                 TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
                      {
