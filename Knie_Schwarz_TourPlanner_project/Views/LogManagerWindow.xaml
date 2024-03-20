@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LogManagerWindow" Height="250" Width="200"
         MinWidth="200" 
-        MinHeight="250">
+        MinHeight="300">
     
     <Grid Margin="5">
 

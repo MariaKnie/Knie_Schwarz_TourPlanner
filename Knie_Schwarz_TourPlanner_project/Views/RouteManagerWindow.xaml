@@ -20,7 +20,7 @@
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
 
             <StackPanel Grid.Row="0" Width=" auto" Margin="10 ,0 ,10, 0">
-                <Label Background="Blue" Foreground="White" Content="routeName"/>
+                <Label Background="Blue" Foreground="White" Content="RouteName"/>
                 <TextBox   Text="{Binding Path=_routeName}" />
 
 
