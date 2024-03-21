@@ -28,7 +28,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
         {
             new RouteModel()
             {
-                 RouteName = "Wienerwald", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                 RouteName = "Wienerwald", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here", Rating = 3.15f, Difficulty = 4,
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
@@ -51,15 +51,15 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Dopplerhütte", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                RouteName = "Dopplerhütte", RouteStart = "Salzburg", RouteGoal = "Vienna", RouteDistance = 5600, EstimatedDuration = "05:35", TransportType = "Car", RouteDiscription = "bLABLABLA",  Rating = 2.75f, Difficulty = 2,
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
                      {
                          Date = DateTime.Now.AddDays(10),
                          Duration = 50,
-                         Distance = 40,
-                         Difficulty = 7,
+                         Distance = 80,
+                         Difficulty = 4,
                          Childfriendliness = 2
                      },
                      new TourLogModel()
@@ -74,7 +74,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Figlwarte", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                RouteName = "Figlwarte", RouteStart = "Gerasdorf", RouteGoal = "G3", RouteDistance = 4012, EstimatedDuration = "01:17", TransportType = "Bus", RouteDiscription = "Some Text", Rating = 1.25f, Difficulty = 5,
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
@@ -97,7 +97,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Dorfrunde", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
+                RouteName = "Dorfrunde", RouteStart = "Dresdnerstraße", RouteGoal = "Leopoldau", RouteDistance = 8340, EstimatedDuration = "04:41", TransportType = "Walking", RouteDiscription = "So much fun", Rating = 4.5f, Difficulty = 1,
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()

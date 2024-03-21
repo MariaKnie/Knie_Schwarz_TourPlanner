@@ -23,15 +23,15 @@
                     </Grid.ColumnDefinitions>
                     <Grid x:Name="Top_Left" Grid.Row="0" Grid.Column="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.35*"/>
                             <RowDefinition Height="1*"/>
 
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0" >
-                            <Border BorderBrush="Black" BorderThickness="1">
+                            <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                                 <Viewbox>
-                                    <Label Content="Label Name" FontWeight="Bold"></Label>
+                                    <Label Content="{Binding routeManagementVM.ActiveRoute.RouteName}" FontWeight="Bold"></Label>
                                 </Viewbox>
                             </Border>
                         </Grid>
@@ -42,12 +42,12 @@
                                 <StackPanel>
                                     <StackPanel Orientation= "Horizontal">
                                         <Label Content="Estimated Time:" FontWeight="Bold"></Label>
-                                        <Label Content="1H"></Label>
+                                        <Label Content="{Binding routeManagementVM.ActiveRoute.EstimatedDuration}"></Label>
                                     </StackPanel>
 
                                     <StackPanel Orientation= "Horizontal">
                                         <Label Content="Tour Distnace:" FontWeight="Bold"></Label>
-                                        <Label Content="11KM"></Label>
+                                        <Label Content="{Binding routeManagementVM.ActiveRoute.RouteDistance}"></Label>
                                     </StackPanel>
                                 </StackPanel>
                             </Viewbox>
@@ -56,19 +56,19 @@
                     </Grid>
                     <Grid x:Name="Top_Middle" Grid.Row="0" Grid.Column="1">
                         <Viewbox>
-                            <StackPanel>
+                            <StackPanel >
                                 <StackPanel Orientation= "Horizontal">
                                     <Label Content="From:" FontWeight="Bold"></Label>
-                                    <Label Content="Start"></Label>
+                                    <Label Content="{Binding routeManagementVM.ActiveRoute.RouteStart}"></Label>
                                 </StackPanel>
 
                                 <StackPanel Orientation= "Horizontal">
                                     <Label Content="To:" FontWeight="Bold"></Label>
-                                    <Label Content="End"></Label>
+                                    <Label Content="{Binding routeManagementVM.ActiveRoute.RouteGoal}"></Label>
                                 </StackPanel>
                                 <StackPanel Orientation= "Horizontal">
                                     <Label Content="Transportation Type:" FontWeight="Bold"></Label>
-                                    <Label Content="Car"></Label>
+                                    <Label Content="{Binding routeManagementVM.ActiveRoute.TransportType}"></Label>
                                 </StackPanel>
                             </StackPanel>
                         </Viewbox>
@@ -106,7 +106,7 @@
                              
                             <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                             Margin="5" Padding="5" Text="Blablabla"  IsReadOnly="True"/>
+                             Margin="5" Padding="5" Text="{Binding routeManagementVM.ActiveRoute.RouteDiscription}"  IsReadOnly="True"/>
                         </Grid>
 
                     </Grid>
@@ -115,12 +115,12 @@
                             <StackPanel>
                                 <StackPanel Orientation= "Horizontal">
                                     <Label Content="Rating:" FontWeight="Bold"/>
-                                    <Label Content="4"/>
+                                    <Label Content="{Binding routeManagementVM.ActiveRoute.Rating}"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation= "Horizontal">
                                     <Label Content="Difficulty:" FontWeight="Bold"/>
-                                    <Label Content="Easy"/>
+                                    <Label Content="{Binding routeManagementVM.ActiveRoute.Difficulty}"/>
                                 </StackPanel>
                                
                             </StackPanel>
