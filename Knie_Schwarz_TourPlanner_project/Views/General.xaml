@@ -1,12 +1,135 @@
-﻿<Window x:Class="Knie_Schwarz_TourPlanner_project.Views.General"
+﻿<UserControl x:Class="Knie_Schwarz_TourPlanner_project.Views.General"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Knie_Schwarz_TourPlanner_project.Views"
-        mc:Ignorable="d"
-        Title="General" Height="450" Width="800">
-    <Grid>
-        
+         mc:Ignorable="d" 
+         d:DesignHeight="200" d:DesignWidth="300">
+    <DockPanel>
+        <Grid Background="White">
+        <Grid x:Name="MiddleArea">
+           
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+
+            </Grid.RowDefinitions>
+                <Grid x:Name="Row_0" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="Top_Left" Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" >
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <Viewbox>
+                                    <Label Content="Label Name" FontWeight="Bold"></Label>
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="5">
+
+                            <Viewbox>
+                                <StackPanel>
+                                    <StackPanel Orientation= "Horizontal">
+                                        <Label Content="Estimated Time:" FontWeight="Bold"></Label>
+                                        <Label Content="1H"></Label>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation= "Horizontal">
+                                        <Label Content="Tour Distnace:" FontWeight="Bold"></Label>
+                                        <Label Content="11KM"></Label>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+
+                    </Grid>
+                    <Grid x:Name="Top_Middle" Grid.Row="0" Grid.Column="1">
+                        <Viewbox>
+                            <StackPanel>
+                                <StackPanel Orientation= "Horizontal">
+                                    <Label Content="From:" FontWeight="Bold"></Label>
+                                    <Label Content="Start"></Label>
+                                </StackPanel>
+
+                                <StackPanel Orientation= "Horizontal">
+                                    <Label Content="To:" FontWeight="Bold"></Label>
+                                    <Label Content="End"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation= "Horizontal">
+                                    <Label Content="Transportation Type:" FontWeight="Bold"></Label>
+                                    <Label Content="Car"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+
+                    <Grid x:Name="Map" Grid.Row="0" Grid.Column="2" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="1*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <local:Map Grid.Row="0"></local:Map>
+                    </Grid>
+                </Grid>
+            
+                <Grid x:Name="Row_1" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid x:Name="Bottom_Left" Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.3*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" HorizontalAlignment="Left">
+                            <Viewbox>
+                                <Label Content="Description" FontWeight="Bold"/>
+                            </Viewbox>
+                        </Grid>
+
+                        <Grid Grid.Row="1" >
+                             
+                            <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Margin="5" Padding="5" Text="Blablabla"  IsReadOnly="True"/>
+                        </Grid>
+
+                    </Grid>
+                    <Grid x:Name="Bottom_Right" Grid.Row="0" Grid.Column="1">
+                        <Viewbox>
+                            <StackPanel>
+                                <StackPanel Orientation= "Horizontal">
+                                    <Label Content="Rating:" FontWeight="Bold"/>
+                                    <Label Content="4"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation= "Horizontal">
+                                    <Label Content="Difficulty:" FontWeight="Bold"/>
+                                    <Label Content="Easy"/>
+                                </StackPanel>
+                               
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+
+                    
+                </Grid>
+            </Grid>
     </Grid>
-</Window>
+    </DockPanel>
+</UserControl>

@@ -67,15 +67,41 @@
             </Grid>
    
 
-            <StackPanel Name="RightMenu" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" Orientation="Horizontal">
-                <Button Grid.Row="0" Grid.Column="0" Content="General" Padding="2" HorizontalAlignment="Right"/>
+            
+                <!--<Button Grid.Row="0" Grid.Column="0" Content="General" Padding="2" HorizontalAlignment="Right"/>
                 <Button Grid.Row="0" Grid.Column="0" Content="Route" Padding="2" HorizontalAlignment="Right"/>
-                <Button Grid.Row="0" Grid.Column="0" Content="Misc" Padding="2" HorizontalAlignment="Right"/>
-            </StackPanel>
+                <Button Grid.Row="0" Grid.Column="0" Content="Misc" Padding="2" HorizontalAlignment="Right"/>-->
+
+            <TabControl  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" Grid.RowSpan="3">
+                    
+                    <!-- Tab 1 -->
+                <TabItem Header="General">
+                        <Grid Background="LightGray">
+                        <local:General></local:General>
+                        </Grid>
+                    </TabItem>
+
+                
+                    <!-- Tab 2 -->
+                <TabItem Header="Route"  Grid.Column="2" Grid.Row="2">
+                    <Grid Background="LightBlue" >
+                        <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
+                            <local:Route/>
+                        </Grid>
+                    </Grid>
+                    </TabItem>
+
+                    <!-- Tab 3 -->
+                    <TabItem Header="Memories">
+                        <Grid Background="LightGreen">
+                            <TextBlock Text="Content of Tab 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </TabItem>
+                
+            </TabControl>
+           
         
-            <Grid x:Name="RightSide" Grid.Column="2" Grid.Row="2">
-                <local:Route/>
-            </Grid>
+           
             
         </Grid>
     </DockPanel>

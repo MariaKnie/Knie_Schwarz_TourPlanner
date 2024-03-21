@@ -17,7 +17,7 @@ namespace Knie_Schwarz_TourPlanner_project.Views
     /// <summary>
     /// Interaktionslogik für General.xaml
     /// </summary>
-    public partial class General : Window
+    public partial class General : UserControl
     {
         public General()
         {
