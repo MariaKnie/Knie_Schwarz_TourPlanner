@@ -21,7 +21,7 @@ namespace Knie_Schwarz_TourPlanner_project.ViewModels
         public float _Duration { get; set; }
         public float _Distance { get; set; }
         public float _Difficulty { get; set; }
-        public int _Childfriendliness { get; set; }
+        public float _Childfriendliness { get; set; }
 
 
         public IItemService ItemService { get; set; }

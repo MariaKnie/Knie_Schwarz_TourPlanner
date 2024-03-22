@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
         {
             new RouteModel()
             {
-                 RouteName = "Wienerwald", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here", Rating = 3.15f, Difficulty = 4,
+                 RouteName = "Wienerwald", RouteStart = "Here", RouteGoal = "There", RouteDistance = 9900, EstimatedDuration = "02:22", TransportType = "Bike", RouteDiscription = "nothing here",
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
@@ -51,7 +52,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Dopplerhütte", RouteStart = "Salzburg", RouteGoal = "Vienna", RouteDistance = 5600, EstimatedDuration = "05:35", TransportType = "Car", RouteDiscription = "bLABLABLA",  Rating = 2.75f, Difficulty = 2,
+                RouteName = "Dopplerhütte", RouteStart = "Salzburg", RouteGoal = "Vienna", RouteDistance = 5600, EstimatedDuration = "05:35", TransportType = "Car", RouteDiscription = "bLABLABLA",
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
@@ -74,7 +75,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Figlwarte", RouteStart = "Gerasdorf", RouteGoal = "G3", RouteDistance = 4012, EstimatedDuration = "01:17", TransportType = "Bus", RouteDiscription = "Some Text", Rating = 1.25f, Difficulty = 5,
+                RouteName = "Figlwarte", RouteStart = "Gerasdorf", RouteGoal = "G3", RouteDistance = 4012, EstimatedDuration = "01:17", TransportType = "Bus", RouteDiscription = "Some Text",
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
@@ -97,7 +98,7 @@ namespace Knie_Schwarz_TourPlanner_project.Services
             },
             new RouteModel()
             {
-                RouteName = "Dorfrunde", RouteStart = "Dresdnerstraße", RouteGoal = "Leopoldau", RouteDistance = 8340, EstimatedDuration = "04:41", TransportType = "Walking", RouteDiscription = "So much fun", Rating = 4.5f, Difficulty = 1,
+                RouteName = "Dorfrunde", RouteStart = "Dresdnerstraße", RouteGoal = "Leopoldau", RouteDistance = 8340, EstimatedDuration = "04:41", TransportType = "Walking", RouteDiscription = "So much fun",
                  TourLogs = new ObservableCollection<TourLogModel>()
                  {
                      new TourLogModel()
@@ -142,6 +143,25 @@ namespace Knie_Schwarz_TourPlanner_project.Services
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            //Calculate average difficulty and rating
+            for(int i = 0; i < Routes.Count; i++)
+            {
+                float rating = 0;
+                float difficutly = 0;
+                if (Routes[i].TourLogs.Count != 0)
+                {
+                    for (int j = 0; j < Routes[i].TourLogs.Count; j++)
+                    {
+                        difficutly += Routes[i].TourLogs[j].Difficulty;
+                        rating += Routes[i].TourLogs[j].Childfriendliness;
+                    }
+                    difficutly /= Routes[i].TourLogs.Count;
+                    rating /= Routes[i].TourLogs.Count;
+                }
+                Routes[i].Rating = rating;
+                Routes[i].Difficulty = difficutly;
+            }
         }
 
     }

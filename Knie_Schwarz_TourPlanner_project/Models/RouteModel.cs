@@ -22,7 +22,7 @@ namespace Knie_Schwarz_TourPlanner_project.Models
         public string mapURL = "\\Assets\\Images\\map.jpg";
         public ObservableCollection<TourLogModel> TourLogs { get; set; } = new ObservableCollection<TourLogModel>();
 
-        public float Rating { get; set; }
-        public int Difficulty { get; set; }
+        public float Rating { get; set; } = 0;
+        public float Difficulty { get; set; } = 0;
     }
 }
